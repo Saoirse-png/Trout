@@ -1,0 +1,42 @@
+/* Basic layout and canvas overlay styling */
+:root{
+  --max-width: 1000px;
+  --accent: #00d1ff;
+  --bg: #0f1720;
+  --panel: #0b1220;
+  --muted: #9aa3ad;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family:Inter, Roboto, Arial, sans-serif; background:var(--bg); color:#e6eef6}
+main{max-width:var(--max-width); margin:28px auto; padding:18px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04)); border-radius:10px; box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+h1{margin:0 0 12px 0; font-size:20px}
+.controls{margin-bottom:18px; padding:10px; background:var(--panel); border-radius:8px}
+.controls label{display:block; margin:8px 0; color:var(--muted); font-size:14px}
+.row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.row > *{margin:6px 0}
+.viewer{display:flex; gap:16px; align-items:flex-start}
+.canvas-wrap{position:relative; display:inline-block; border-radius:6px; overflow:hidden; background:#000}
+.canvas-wrap img{display:block; max-width:100%; height:auto; user-select:none}
+.canvas-wrap canvas{position:absolute; left:0; top:0; pointer-events:auto}
+
+/* Buttons and inputs */
+button{background:var(--accent); border:none; color:#07202a; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:600}
+button.secondary{background:#24303a; color:#cfe7ef}
+input[type="range"]{vertical-align:middle}
+input[type="number"]{width:90px; padding:6px; border-radius:6px; border:1px solid #21303a; background:#0c1418; color:#e6eef6}
+
+/* overlay panel */
+.overlay-panel{width:320px; background:#061019; padding:12px; border-radius:8px}
+.overlay-list{margin-top:8px; max-height:240px; overflow:auto}
+.overlay-item{display:flex; gap:8px; align-items:center; padding:6px; background:#07121a; border-radius:6px}
+.overlay-item img{width:40px; height:40px; object-fit:contain}
+.overlay-item button{background:#ff6b6b; color:#fff; padding:6px 8px}
+
+/* Footer note */
+.note{color:var(--muted); font-size:13px; margin-top:10px}
+small{color:var(--muted)}
+@media (max-width:900px){
+  .viewer{flex-direction:column}
+  .overlay-panel{width:100%}
+}
