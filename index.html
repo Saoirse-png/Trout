@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ocean-point generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Ocean-point generator</h1>
+
+    <section class="controls">
+      <label>Load image (or leave blank to use an image at assets/ocean.png):
+        <input id="fileInput" type="file" accept="image/*">
+      </label>
+
+      <div class="row">
+        <label>Points (1–400):
+          <input id="count" type="number" min="1" max="400" value="100">
+        </label>
+
+        <label>Brightness threshold (lower = treat more as ocean):
+          <input id="threshold" type="range" min="0" max="255" value="50">
+          <span id="thresholdVal">50</span>
+        </label>
+
+        <button id="generate">Generate points</button>
+        <button id="clear">Clear</button>
+      </div>
+
+      <div class="row">
+        <button id="exportCsv">Export CSV</button>
+        <button id="exportJson">Export JSON</button>
+      </div>
+
+      <p class="note">If your image contains dark land (near-black), increase the threshold to exclude it from sampling. You can also upload the provided 800×413 image.</p>
+    </section>
+
+    <section class="viewer">
+      <div class="canvas-wrap">
+        <img id="sourceImage" src="assets/ocean.png" alt="ocean image" crossorigin="anonymous">
+        <canvas id="overlay"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
