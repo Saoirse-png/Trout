@@ -18,7 +18,12 @@ h1{margin:0 0 12px 0; font-size:20px}
 .viewer{display:flex; gap:16px; align-items:flex-start}
 .canvas-wrap{position:relative; display:inline-block; border-radius:6px; overflow:hidden; background:#000}
 .canvas-wrap img{display:block; max-width:100%; height:auto; user-select:none}
-.canvas-wrap canvas{position:absolute; left:0; top:0; pointer-events:auto}
+.canvas-wrap canvas{position:absolute; left:0; top:0}
+
+/* canvas layering and pointer events */
+#overlaysCanvas{ z-index: 1; pointer-events: none; }
+#troutCanvas{ z-index: 2; pointer-events: none; }
+#stampsCanvas{ z-index: 3; pointer-events: auto; }
 
 /* Buttons and inputs */
 button{background:var(--accent); border:none; color:#07202a; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:600}
