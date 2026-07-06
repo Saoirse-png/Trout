@@ -25,13 +25,43 @@
           <span id="thresholdVal">50</span>
         </label>
 
-        <button id="generate">Generate points</button>
+        <label>Flow strength:
+          <input id="flowStrength" type="range" min="0" max="2" step="0.05" value="0.9">
+          <span id="flowVal">0.9</span>
+        </label>
+
+        <label>Streakiness (noise scale):
+          <input id="noiseScale" type="range" min="0.1" max="3" step="0.1" value="0.6">
+          <span id="noiseVal">0.6</span>
+        </label>
+
+        <label>Diffusion (randomness):
+          <input id="diffusion" type="range" min="0" max="1" step="0.01" value="0.25">
+          <span id="diffVal">0.25</span>
+        </label>
+
+      </div>
+
+      <div class="row">
+        <label>Step size:
+          <input id="stepSize" type="number" min="1" max="10" value="3">
+        </label>
+        <label>Max steps per streak:
+          <input id="maxSteps" type="number" min="1" max="200" value="50">
+        </label>
+
+        <label>Seed:
+          <input id="seed" type="number" value="1234">
+        </label>
+
+        <button id="generate">Generate trout</button>
         <button id="clear">Clear</button>
       </div>
 
       <div class="row">
         <button id="exportCsv">Export CSV</button>
         <button id="exportJson">Export JSON</button>
+        <button id="exportPng">Export combined PNG</button>
       </div>
 
       <p class="note">If your image contains dark land (near-black), increase the threshold to exclude it from sampling. You can also upload the provided 800×413 image.</p>
@@ -40,8 +70,32 @@
     <section class="viewer">
       <div class="canvas-wrap">
         <img id="sourceImage" src="assets/ocean.png" alt="ocean image" crossorigin="anonymous">
-        <canvas id="overlay"></canvas>
+        <!-- canvases are stacked in z-order: overlays -> trout -> interactive stamps -->
+        <canvas id="overlaysCanvas"></canvas>
+        <canvas id="troutCanvas"></canvas>
+        <canvas id="stampsCanvas"></canvas>
       </div>
+
+      <aside class="overlay-panel">
+        <h3>Overlays</h3>
+        <label>Upload shape (PNG or SVG):
+          <input id="overlayUpload" type="file" accept="image/png,image/svg+xml">
+        </label>
+        <div class="row">
+          <label>Stamp size (px): <input id="stampSize" type="number" value="32" min="4"></label>
+          <label>Stamp count: <input id="stampCount" type="number" value="10" min="1"></label>
+        </div>
+        <div class="row">
+          <label>Opacity: <input id="stampOpacity" type="range" min="0" max="1" step="0.05" value="1"></label>
+          <label>Random rotation: <input id="stampRotate" type="checkbox" checked></label>
+        </div>
+        <div class="row">
+          <label>Restrict to ocean: <input id="restrictOcean" type="checkbox"></label>
+          <button id="addOverlay">Add overlay layer</button>
+        </div>
+
+        <div class="overlay-list" id="overlayList"></div>
+      </aside>
     </section>
 
   </main>
