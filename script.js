@@ -41,8 +41,7 @@
       const bb = perm[X + 1 + perm[Y + 1]];
       // produce pseudo-random gradients from perm values
       const grad = (hash, dx, dy) => {
-        // convert hash to pseudo-gradient vector in [-1,1]
-        const h = hash & 7;
+        // convert hash to pseudo-gradient vector in [-1,1]\n        const h = hash & 7;
         const gx = (h & 1) ? 1 : -1;
         const gy = (h & 2) ? 1 : -1;
         return gx*dx + gy*dy;
@@ -150,31 +149,19 @@
     currentPoints = [];
   }
 
-  // --- Coordinate display on hover ---
-  function getCanvasCoordinates(event, element) {
-    const rect = element.getBoundingClientRect();
-    const scaleX = element.width / rect.width;
-    const scaleY = element.height / rect.height;
+  // --- Coordinate display on hover (SIMPLE FIX) ---
+  img.addEventListener('mousemove', (event) => {
+    const rect = img.getBoundingClientRect();
+    const scaleX = img.naturalWidth / rect.width;
+    const scaleY = img.naturalHeight / rect.height;
     const x = Math.round((event.clientX - rect.left) * scaleX);
     const y = Math.round((event.clientY - rect.top) * scaleY);
-    return { x, y };
-  }
-
-  function updateCoordinateDisplay(x, y) {
     coordDisplay.textContent = `(${x}, ${y})`;
-  }
-
-  function hideCoordinateDisplay() {
-    coordDisplay.textContent = '';
-  }
-
-  // Track mouse movement over the wrapper element (covers all canvases and img)
-  const canvasWrap = document.querySelector('.canvas-wrap');
-  canvasWrap.addEventListener('mousemove', (event) => {
-    const coords = getCanvasCoordinates(event, img);
-    updateCoordinateDisplay(coords.x, coords.y);
   });
-  canvasWrap.addEventListener('mouseleave', hideCoordinateDisplay);
+
+  img.addEventListener('mouseleave', () => {
+    coordDisplay.textContent = '';
+  });
 
   function buildOceanPixelList(threshold){
     oceanPixels = [];
