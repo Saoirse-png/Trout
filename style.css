@@ -25,25 +25,6 @@ h1{margin:0 0 12px 0; font-size:20px}
 #troutCanvas{ z-index: 2; pointer-events: none; }
 #stampsCanvas{ z-index: 3; pointer-events: auto; }
 
-/* Coordinate display */
-#coordDisplay {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--accent);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-  font-weight: 700;
-  z-index: 100;
-  pointer-events: none;
-  min-height: 20px;
-  min-width: 80px;
-  text-align: center;
-}
-
 /* Buttons and inputs */
 button{background:var(--accent); border:none; color:#07202a; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:600}
 button.secondary{background:#24303a; color:#cfe7ef}
