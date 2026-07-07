@@ -80,6 +80,7 @@
   const overlaysCanvas = document.getElementById('overlaysCanvas');
   const troutCanvas = document.getElementById('troutCanvas');
   const stampsCanvas = document.getElementById('stampsCanvas');
+  const coordDisplay = document.getElementById('coordDisplay');
 
   const overlayUpload = document.getElementById('overlayUpload');
   const stampSizeEl = document.getElementById('stampSize');
@@ -148,6 +149,32 @@
     });
     currentPoints = [];
   }
+
+  // --- Coordinate display on hover ---
+  function getCanvasCoordinates(event, element) {
+    const rect = element.getBoundingClientRect();
+    const scaleX = element.width / rect.width;
+    const scaleY = element.height / rect.height;
+    const x = Math.round((event.clientX - rect.left) * scaleX);
+    const y = Math.round((event.clientY - rect.top) * scaleY);
+    return { x, y };
+  }
+
+  function updateCoordinateDisplay(x, y) {
+    coordDisplay.textContent = `(${x}, ${y})`;
+  }
+
+  function hideCoordinateDisplay() {
+    coordDisplay.textContent = '';
+  }
+
+  // Track mouse movement over the wrapper element (covers all canvases and img)
+  const canvasWrap = document.querySelector('.canvas-wrap');
+  canvasWrap.addEventListener('mousemove', (event) => {
+    const coords = getCanvasCoordinates(event, img);
+    updateCoordinateDisplay(coords.x, coords.y);
+  });
+  canvasWrap.addEventListener('mouseleave', hideCoordinateDisplay);
 
   function buildOceanPixelList(threshold){
     oceanPixels = [];
