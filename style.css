@@ -26,22 +26,22 @@ h1{margin:0 0 12px 0; font-size:20px}
 #stampsCanvas{ z-index: 3; pointer-events: auto; }
 
 /* Coordinate display */
-.coord-display{
+#coordDisplay {
   position: absolute;
-  bottom: 8px;
-  left: 8px;
-  background: rgba(0, 0, 0, 0.7);
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.8);
   color: var(--accent);
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
-  font-size: 12px;
-  font-weight: 600;
-  z-index: 10;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 100;
   pointer-events: none;
+  min-height: 20px;
   min-width: 80px;
   text-align: center;
-  border: 1px solid var(--accent);
 }
 
 /* Buttons and inputs */
